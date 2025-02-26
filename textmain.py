@@ -15,9 +15,6 @@ app.config['UPLOAD_TTS_FOLDER']='static/audio'
 app.config['UPLOAD_AUDIO_FOLDER']='static/audiooutput'
 app.config['UPLOAD_TRANSCRIBE_FOLDER']='static/transcribeaudio'
 
-# with open("apikey.yaml","r") as file:
-#     config=yaml.safe_load(file)
-
 openai.api_key= os.getenv("API_KEY")
 
 client = MongoClient("mongodb://localhost:27017")
