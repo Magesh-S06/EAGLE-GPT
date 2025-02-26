@@ -73,7 +73,7 @@ async function getMessage() {
         const data = await response.json();
         if (data.error) {
             console.error(data.error);
-            currentChat.push({ content: `Error: ${data.error}`, isUser: false });
+            currentChat.push({ content: `Server Error Please Try again later`, isUser: false });
             addMessageToChat(`Server Error Please try again later`, false); 
         } else {
             const botMessage = marked.parse(data.output)

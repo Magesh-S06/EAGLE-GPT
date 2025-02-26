@@ -5,16 +5,20 @@ import time
 from pathlib import Path
 import base64
 from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app=Flask(__name__)
 app.config['UPLOAD_TTS_FOLDER']='static/audio'
 app.config['UPLOAD_AUDIO_FOLDER']='static/audiooutput'
 app.config['UPLOAD_TRANSCRIBE_FOLDER']='static/transcribeaudio'
 
-with open("apikey.yaml","r") as file:
-    config=yaml.safe_load(file)
+# with open("apikey.yaml","r") as file:
+#     config=yaml.safe_load(file)
 
-openai.api_key= config["API_KEY"]
+openai.api_key= os.getenv("API_KEY")
 
 client = MongoClient("mongodb://localhost:27017")
 db=client["Eagle_GPT"]
@@ -176,4 +180,5 @@ def serve_audio(filename):
     return send_from_directory(app.config['UPLOAD_TTS_FOLDER'], filename)
 
 if __name__=="__main__":
-    app.run(debug=True)
+    port=int(os.getenv("PORT",5000))
+    app.run(host="0.0.0.0", port=port, debug=True)

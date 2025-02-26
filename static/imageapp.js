@@ -22,7 +22,7 @@ async function getImage(){
          console.log(data)
          if (data.error){
             console.error(data)
-            imageSection.textContent="Error:"+ data.error
+            imageSection.textContent="Server Error Please Try again later"
          }
          else{
             data?.data.forEach(imageObject => {

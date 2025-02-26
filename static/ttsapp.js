@@ -25,7 +25,7 @@ async function getMessage() {
         console.log(data)
         if (data.error) {
             console.error(data.error);
-            outputelement.textContent = "Error:" + data.error;
+            outputelement.textContent = "Server Error Please Try again later";
         }else if(data.audio_url){
             console.log("Audio URL:", data.audio_url);
             outputelement.innerHTML=`
